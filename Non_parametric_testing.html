@@ -1,0 +1,149 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Nonparametric Testing: Hypotheses, Confidence Interval and Association</title>
+  <meta name="description" content="Nonparametric Testing - Quick Overview">
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+  <style>
+a {
+    text-decoration: none;
+}
+body {
+  padding: 25px 50px 75px 100px;
+  font-family:arial,courier,helvetica;
+}
+pre {
+  background-color: #eee;
+  border: 1px solid #999;
+  display: block;
+  padding: 10px;
+}
+  </style>
+</head>
+<body>
+<div style="text-align: center;"><h1>Nonparametric Testing: Hypotheses, Confidence Interval and Association</h1></div>
+<div style="text-align: center;"><h3>Less assumptions about the shape or parameters of the underlying population distribution.</h3></div>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+       <div id="chart_div"></div>
+       <br>
+<div>
+<h3>SIGN, RANK and PERMUTATION TESTS:</h3> 
+Sign test use/provide the least amount of information
+Permutation tests are better than rank tests because they use more information.<br>
+Permutation tests are better than Bootstrap if assumptions  hold (symmetrical, equal distributions for 2 samples) or few samples for bootstrap.<br>
+Bootstrap always approximate, may be difficult to construct null distribution but no assumptions.
+</div>
+<div>
+<h4>Assumptions</h4>
+Rank and Permutation tests assume symmetrical distribution.
+Rank methods assume data can be sorted in non-ambiguous way (need to adjust for ties, can't have too many duplicates)
+Bootstrap has no assumptions about distribution.
+</div>
+<br>
+<a id="signtestpython">Sign test</a>
+<pre>
+from scipy.stats import binom
+
+# Hypotheses Testing
+# https://www.coursera.org/learn/applied-statistics/lecture/77m3p/sign-tests  
+# H_1​: med X &lt; m_0​, then p_1 = F_{Bin(n,0.5)}(T)
+<a href='https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.binom.html'>scipy.stats.binom.cdf</a>(k=t, n=n, p=0.5)
+# H_1​: medX &gt; m_0​, then p_2 = 1 − F_{Bin(n,0.5)}(T−1)
+<a href='https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.binom.html'>scipy.stats.binom.cdf</a>(k=t-1, n=n, p=0.5)
+# sign rank test (tests median)
+# https://www.coursera.org/learn/applied-statistics/lecture/HnlMi/rank-tests
+# One sample permutation test for the mean
+</pre>
+<br>
+<a id="2samplepairedsigntestpython">2-sample paired sign test</a>
+<pre>
+from scipy.stats import binom
+
+# Hypotheses Testing sign test
+# https://www.coursera.org/learn/applied-statistics/lecture/77m3p/sign-tests  halfway through
+# H_1​: med X &lt; m_0​, then p_1 = F_{Bin(n,0.5)}(T)
+<a href='https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.binom.html'>scipy.stats.binom.cdf</a>(k=t, n=n, p=0.5)
+# H_1​: medX &gt; m_0​, then p_2 = 1 − F_{Bin(n,0.5)}(T−1)
+  <a href='https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.binom.html'>scipy.stats.binom.cdf</a>(k=t-1, n=n, p=0.5)
+# (Wilcoxon) Sign rank test (tests median)
+# https://www.coursera.org/learn/applied-statistics/lecture/HnlMi/rank-tests
+# Permutation test (two paired samples)
+# https://www.coursera.org/learn/applied-statistics/lecture/pn687/permutation-tests
+</pre>
+
+<br>
+<a id="2sampleindependentttestpython">2-sample independent nonparametric tests</a>
+<pre>
+# Mann-Whitney (Wilcoxon) test
+# https://www.coursera.org/learn/applied-statistics/lecture/HnlMi/rank-tests
+# Permutation test (two independent samples)
+# https://www.coursera.org/learn/applied-statistics/lecture/pn687/permutation-tests
+# Bootstrap
+# https://www.coursera.org/learn/applied-statistics/lecture/W41KB/bootstrap-tests
+</pre>
+<br>
+<br>
+<div>
+<h3>ASSOCIATION (of two paired samples): </h3>
+<div>
+  <h4>Assumptions</h4>
+  Categorical
+  Chi-squred test assumes e_{ij} > 5 in 80% of cells and no cells with 0
+  Use permutation test for sparse values
+  </div>
+  <br>
+</div>
+<a id="associationindependencetestpython">Association indpendence tests</a>
+<pre>
+# 𝛘² Chi-squared test for independence
+# https://www.coursera.org/learn/applied-statistics/lecture/88r9r/independence-for-categorical-variables
+# Permutation test for independence
+# https://www.coursera.org/learn/applied-statistics/lecture/88r9r/independence-for-categorical-variables
+# often followed up by Standardized Pearson Residuals
+</pre>
+<br>
+<a id="spearmansrankcorrelationtestpython">Spearman's Rank Correlation test</a>
+<pre>
+
+</pre>
+<br>
+
+    
+<script type="text/javascript">
+google.charts.load('current', {packages:["orgchart"]});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Name');
+        data.addColumn('string', 'Manager');
+        data.addColumn('string', 'ToolTip');
+
+        // For each orgchart box, provide the name, manager, and tooltip to show.
+        data.addRows([
+          [{'v':'What', 'f':'<h2>What&nbsp;is&nbsp;being&nbsp;tested?</h2>'},
+           '', 'The President'],
+          [{'v':'Means', 'f':'<h3>MEANS</h3>'}, 'What', 'VP'],
+          [{'v':'Associations', 'f':'<h3>ASSOCIATION</h3>'}, 'What', 'VP'],
+          [{'v':'signtest', 'f':'<a href="#signtestpython"><h4>Compare&nbsp;sample&nbsp;mean&nbsp;to&nbsp;an&nbsp;expected value</h4><div style="color:red;">Sign test<br>Signed rank test (tests median)<br>One sample permutation test for mean</div></a>'}, 'Means', ''],
+          [{'v':'twosamplepairedsigntest', 'f':'<a href="#2samplepairedsigntestpython"><h4>Compare&nbsp;two&nbsp;sample&nbsp;means&nbsp;from&nbsp;the same population</h4><div style="color:red;">Sign test<br>Signed rank test (tests median)<br>Permutation test</div></a>'}, 'signtest', ''],
+          [{'v':'twosampleindependentttest', 'f':'<a href="#2sampleindependentttestpython"><h4>Compare&nbsp;sample&nbsp;means from two different populations</h4><div style="color:red;">Mann-Whitney (Wilcoxon)/Wilcoxon rank-sum test (+-delta)<br>Two sample permutation test for independent means<br>Bootstrap test</div></a>'}, 'twosamplepairedsigntest', ''],
+          [{'v':'anovatest', 'f':'<a href="#2sampleindependentttestpython"><h4>Compare&nbsp;means&nbsp;between&nbsp;three or more distinct/independent groups</h4><div style="color:red;">Kruskal-Wallis test</div></a>'}, 'twosampleindependentttest', ''],
+          [{'v':'associationindependencetest', 'f':'<a href="#associationindependencetestpython"><h4>Test&nbsp;for&nbsp;independence&nbsp;between&nbsp;two categorical variables</h4><div style="color:red;">Chi-squared test for independence<br>Permutation test for independence</div></a>'}, 'Associations', ''],
+          [{'v':'spearmansrankcorrelationtest', 'f':'<a href="#spearmansrankcorrelationtestpython"><h4>Estimate&nbsp;the&nbsp;degree&nbsp;of&nbsp;association between two quantitative (continuous) variables</h4><div style="color:red;">Spearman’s rank correlation</div></a>'}, 'associationindependencetest', ''],
+
+        ]);
+        data.setRowProperty(1, 'style', 'background:#FCF4A3;');
+        data.setRowProperty(2, 'style', 'background:#FCF4A3;');
+        // Create the chart.
+        var chart = new google.visualization.OrgChart(document.getElementById('chart_div'));
+
+        // Draw the chart, setting the allowHtml option to true for the tooltips.
+        chart.draw(data, {'allowHtml':true});
+      }
+</script>
+</body>
+</html>
