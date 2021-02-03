@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8">
 
-  <title>Hypotheses and Confidence Interval Testing</title>
-  <meta name="description" content="Hypotheses and Confidence Interval Quick Overview">
+  <title>Parametric Testing: Hypotheses, Confidence Interval and Association</title>
+  <meta name="description" content="Parametric Testing - Quick Overview">
   <link rel="stylesheet" href="css/styles.css?v=1.0">
   <style>
 a {
@@ -24,7 +24,8 @@ pre {
   </style>
 </head>
 <body>
-<div style="text-align: center;"><h1>Hypotheses and Confidence Interval Testing</h1></div>
+<div style="text-align: center;"><h1>Parametric Testing: Hypotheses, Confidence Interval and Association</h1></div>
+<div style="text-align: center;"><h3>Assumption is that data are approximately normally distributed.</h3></div>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
        <div id="chart_div"></div>
        <br>
@@ -37,6 +38,11 @@ Testing Hypotheses: Wald (simplest but worst performance), Score (Wilson's Inter
 <div>
 Confidence Intervals: Wald (simplest but worst performance) or Wilson
 </div>
+<div>
+  <h4>Assumptions</h4>
+Proportions are always binary
+  </div>
+  <br>
 <br>
 <br>
 <a id="1sampleztestpython">1-sample Z-test</a>
@@ -76,6 +82,14 @@ from statsmodels.stats.proportion import confint_proportions_2indep, test_propor
 <div>
 <h3>T-TESTS:</h3> 
 </div>
+<div>
+<h4>Assumptions</h4>
+IID or fully paired samples<br>
+Normal distributions. Under weak assumptions, CLT allows for symmetrical approximately normal distributions, if large number of samples taken.<br>
+Every variable’s expected count must be at least 5 (For example: suppose bears in Alberta were 5% Black, and 95% Brown bears: this is our expected frequency. A sample size of 50 would mean we would “expect” approximately 2.5 Brown bears in this sample – this is less than 5 so the sample size is insufficient.)
+For two sample t-tests, the smaller group cannot have much higher variance (so should have some idea about variance)
+</div>
+<br>
 <a id="1samplettestpython">1-sample t-test</a>
 <pre>
 from statsmodels.stats.weightstats import DescrStatsW, CompareMeans
@@ -115,6 +129,11 @@ cm = CompareMeans(DescrStatsW(data1), DescrStatsW(data2))
 <div>
 <h3>FREQUENCIES: </h3>
 </div>
+<div>
+  <h4>Assumptions</h4>
+  If the question is independence, we are satisfied with just a yes/no answer<br>
+  </div>
+  <br>
 <a id="shapirowilktestpython">Shapiro-Wilk test</a>
 <pre>
 from scipy import stats
@@ -162,20 +181,23 @@ google.charts.load('current', {packages:["orgchart"]});
            'What', 'VP'],
           [{'v':'Means', 'f':'<h3>MEANS</h3>'}, 'What', 'VP'],
           [{'v':'Frequencies', 'f':'<h3>FREQUENCIES</h3>'}, 'What', 'VP'],
+          [{'v':'Associations', 'f':'<h3>ASSOCIATION</h3>'}, 'What', 'VP'],
           [{'v':'onesampleztest', 'f':'<a href="#1sampleztestpython"><h4>Compare&nbsp;proportion&nbsp;sample to an expected value</h4><div style="color:red;">1-sample Z-test</div></a>'}, 'Proportions', ''],
           [{'v':'twosamplepairedztest', 'f':'<a href="#2samplepairedztestpython"><h4>Compare&nbsp;proportions&nbsp;between two samples from the same population</h4><div style="color:red;">2-sample paired Z-test</div></a>'}, 'onesampleztest', ''],
           [{'v':'twosampleindependentztest', 'f':'<a href="#2sampleindependentztestpython"><h4>Compare&nbsp;proportions&nbsp;between two samples from different populations</h4><div style="color:red;">2-sample independent Z-test</div></a>'}, 'twosamplepairedztest', 'Should this exist'],
           [{'v':'onesamplettest', 'f':'<a href="#1samplettestpython"><h4>Compare&nbsp;sample&nbsp;mean to an expected value</h4><div style="color:red;">1-sample t-test</div></a>'}, 'Means', ''],
           [{'v':'twosamplepairedttest', 'f':'<a href="#2samplepairedttestpython"><h4>Compare&nbsp;two&nbsp;sample&nbsp;means from the same population</h4><div style="color:red;">2-sample paired t-test</div></a>'}, 'onesamplettest', ''],
           [{'v':'twosampleindependentttest', 'f':'<a href="#2sampleindependentttestpython"><h4>Compare&nbsp;sample&nbsp;means from two different populations</h4><div style="color:red;">2-sample independent t-test</div></a>'}, 'twosamplepairedttest', ''],
+          [{'v':'anovatest', 'f':'<a href="#2sampleindependentttestpython"><h4>Compare&nbsp;means&nbsp;between&nbsp;three or more distinct/independent groups</h4><div style="color:red;">ANOVA</div></a>'}, 'twosampleindependentttest', ''],
           [{'v':'shapiro-wilktest', 'f':'<a href="#shapirowilktestpython"><h4>Best&nbsp;test&nbsp;to&nbsp;compare&nbsp;to a normal distribution</h4><div style="color:red;">Shapiro-Wilk test</div></a>'}, 'Frequencies', ''],
           [{'v':'chisquaredgoodnessoffit', 'f':'<a href="#chisquaredtestpython"><h4>Simplest&nbsp;method&nbsp;to&nbsp;compare&nbsp;counts&nbsp;to any expected distribution</h4><div style="color:red;">𝛘² chi-squared goodness of fit</div></a>'}, 'shapiro-wilktest', ''],
           [{'v':'anderson-darlingtest', 'f':'<a href="#andersondarlingtestpython"><h4>Compare&nbsp;to&nbsp;any&nbsp;expected distribution (better results than chi-squared but more complicated)</h4><div style="color:red;">Anderson-Darling Test</div></a>'}, 'chisquaredgoodnessoffit', ''],
-
+          [{'v':'pearsoncoefficientcorrelationtest', 'f':'<a href="#2sampleindependentttestpython"><h4>Estimate&nbsp;the&nbsp;degree&nbsp;of&nbsp;association between two quantitative (continuous) variables</h4><div style="color:red;">Pearson coefficient of correlation</div></a>'}, 'Associations', ''],
         ]);
         data.setRowProperty(1, 'style', 'background:#FCF4A3;');
         data.setRowProperty(2, 'style', 'background:#FCF4A3;');
         data.setRowProperty(3, 'style', 'background:#FCF4A3;');
+        data.setRowProperty(4, 'style', 'background:#FCF4A3;');
         // Create the chart.
         var chart = new google.visualization.OrgChart(document.getElementById('chart_div'));
 
