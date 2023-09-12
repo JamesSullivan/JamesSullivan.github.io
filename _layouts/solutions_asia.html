@@ -1,0 +1,24 @@
+---
+#layout: compress # enable only if needed
+---
+
+<!DOCTYPE html>
+<html lang="{{ site.lang | slice: 0,2 | default: "en" }}">
+
+{% include head.html %}
+
+<body style="background-color:F2F2F2; background-image: url('assets/images/Background2.png'); background-position: right;  background-repeat: no-repeat;">
+  <!-- page container -->
+  <div class="page-container">
+    <!-- page header -->
+    {% include header.html %}
+    <main class="page-content" role="main">
+    <!-- page content -->
+      {{ content }}
+    </main>
+    {% include footer.html %}
+  </div>
+  {% include scripts.html %}
+</body>
+
+</html>

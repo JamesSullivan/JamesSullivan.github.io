@@ -1,0 +1,140 @@
+---
+layout: post
+title: Natural Language Identification/Detection
+date: '2016-10-23T21:39:00.000-07:00'
+categories: ML
+author: Sully
+tags:
+- language detection
+- n-gram
+- ML
+- programming
+- language identificiation
+- NLP
+modified_time: '2023-01-11T05:28:21.307-08:00'
+blogger_id: tag:blogger.com,1999:blog-7835395644559909128.post-2791946845423186425
+blogger_orig_url: http://blog.solutions.asia/2016/10/natural-language-identificationdetection.html
+---
+<h1 id="language identification">Language Identification</h1>
+<div class="MsoNormal">
+   <span lang="EN">In natural language processing, <b><a href="https://en.wikipedia.org/wiki/Language_identification">language identification</a></b> or language detection is the problem of determining the natural language of given text content. Much like character encoding detection, 100% reliability is not possible for shorter amounts of text. Take for example the words <i>ballet</i>, <i>date</i>, <i>empire</i>, <i>image</i>, <i>menu</i>, etc. They are exactly the same in French and English so with the one word alone it is impossible to determine the language. This problem extends to other languages, take for example the characters for China </span><span lang="JA" style="font-family: &quot;ms pgothic&quot; , &quot;sans-serif&quot;;">中国</span>
+   <span lang="EN">
+      , which are the same in Simplified Chinese and Japanese. Fortunately, in most cases and particularly with longer samplings of text it is possible to determine the language. &nbsp;Moreover, depending on your use case you may be able to use additional information, such as user language preferences, to narrow down which languages to consider. 
+      <o:p></o:p>
+   </span>
+</div>
+<div class="MsoNormal"><span lang="EN"><br /></span></div>
+<div class="MsoNormal"><span lang="EN">&nbsp;</span><img src="https://pixabay.com/static/uploads/photo/2013/05/12/09/36/globe-110775_640.jpg" /></div>
+<div class="MsoNormal"><span lang="EN"><br /></span></div>
+<div class="MsoNormal">
+   <span lang="EN">
+      There are a number of approaches to language identification including the naïve (character ranges) but the vast majority of serious tools use n-gram. <a href="https://en.wikipedia.org/wiki/N-gram">N-gram</a> has the advantage that byte n-grams can be used when character encoding is not known, which is often the case when you don’t know the language, although it does work better when codepoint n-grams are used, but which requires knowing the encoding. Almost all language identifiers use various takes on n-grams such as different numbers for n and how they analyze the statistics and which corpuses they use for training.
+      <o:p></o:p>
+   </span>
+</div>
+<div class="MsoNormal"><br /></div>
+<div class="MsoNormal">
+   <span lang="EN">
+      There are actually a large number of open source language detectors available but as the quality varies widely I have listed only a few of the better ones below. The quality of the better open source implementations is the equal of the commercial offerings, and other than cost, they have the advantage over commercial implementations in that if you can invest the time, you can use your own training set to further improve the results for your particular corpus. 
+      <o:p></o:p>
+   </span>
+</div>
+<div class="MsoNormal"><br /></div>
+<div class="MsoNormal">
+   <b>
+      <span lang="EN" style="font-size: 14.0pt; mso-ansi-language: EN;">
+         <h2 id="open source">Open Source</h2>
+         <o:p></o:p>
+      </span>
+   </b>
+</div>
+<div class="MsoNormal"><br /></div>
+<div class="MsoNormal" style="margin-left: 36.0pt;">
+   <b>
+      <span lang="EN">
+         Java
+         <o:p></o:p>
+      </span>
+   </b>
+</div>
+<div class="MsoNormal" style="margin-left: 72.0pt;">
+   <span lang="EN">
+      <a href="https://github.com/optimaize/language-detector">optimaize</a>&nbsp;used by the latest version of <a href="https://tika.apache.org/">Tika</a>and a vast improvement over what was previously used.
+      <o:p></o:p>
+   </span>
+</div>
+<div class="MsoNormal" style="margin-left: 72.0pt;">
+   <span lang="EN">
+      <a href="shuyohttps://github.com/shuyo/language-detection/blob/wiki/ProjectHome.md">Shuyo</a>&nbsp; Naive Bayes code point
+      <o:p></o:p>
+   </span>
+</div>
+<div class="MsoNormal" style="margin-left: 36.0pt;"><br /></div>
+<div class="MsoNormal" style="margin-left: 36.0pt;">
+   <b>
+      <span lang="EN">
+         C
+         <o:p></o:p>
+      </span>
+   </b>
+</div>
+<div class="MsoNormal" style="margin-left: 72.0pt;"><span lang="EN"><a href="https://github.com/CLD2Owners/cld2">Compact Language Detector 2</a>&nbsp; &nbsp;</span>Naive Bayes code point; allows supplemental information such as expected language, original document encoding, document URL top-level domain name</div>
+<div class="MsoNormal" style="margin-left: 36.0pt;"><br /></div>
+<div class="MsoNormal" style="margin-left: 36.0pt;">
+   <b>
+      <span lang="EN">
+         Python
+         <o:p></o:p>
+      </span>
+   </b>
+</div>
+<div class="MsoNormal" style="margin-left: 72.0pt;">
+   <span lang="EN">
+      <a href="https://github.com/saffsd/langid.py">LangID</a> comes with confidence score
+      <o:p></o:p>
+   </span>
+</div>
+<div class="MsoNormal" style="margin-left: 72.0pt;">
+   <span lang="EN">
+      <a href="https://github.com/Mimino666/langdetect">Langdetect</a> &nbsp;Port of Shuyo language-detection library to Python
+      <o:p></o:p>
+   </span>
+</div>
+<div class="MsoNormal"><br /></div>
+<div class="MsoNormal">
+   <div style="margin-left: 36.0pt;"><strong>Javascript</strong></div>
+   <div style="margin-left: 72.0pt;"><a class="jive-link-external-small" href="https://github.com/wooorm/franc" rel="nofollow">franc</a> supports 176 “languages”, by default.</div>
+</div>
+<div class="MsoNormal"><br /></div>
+<div class="MsoNormal">
+   <b>
+      <span lang="EN" style="font-size: 14.0pt; mso-ansi-language: EN;">
+         <h2 id="commercial">Commercial</h2>
+         <o:p></o:p>
+      </span>
+   </b>
+</div>
+<div class="MsoNormal"><br /></div>
+<div class="MsoNormal" style="margin-left: 36.0pt;">
+   <span lang="EN">
+      <a href="https://detectlanguage.com/">Language Detection API</a> (provides API clients for Java, Python, Ruby, PHP, C#, Crystal)
+      <o:p></o:p>
+   </span>
+</div>
+<div class="MsoNormal" style="margin-left: 36.0pt;">
+   <span lang="EN">
+      <a href="http://alias-i.com/lingpipe/demos/tutorial/langid/read-me.html">LingPipe</a>SDK (Java)
+      <o:p></o:p>
+   </span>
+</div>
+<div class="MsoNormal" style="margin-left: 36.0pt;">
+   <span lang="EN">
+      <a href="https://www.rosette.com/function/language-identification/">Rosette</a>SDK and API
+      <o:p></o:p>
+   </span>
+</div>
+<br />
+<div class="MsoNormal" style="margin-left: 36.0pt;">
+   <a href="https://www.meaningcloud.com/developer/language-identification">Meaning Clould API</a> (n-gram)
+   <o:p></o:p>
+</div>

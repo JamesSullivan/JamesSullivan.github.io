@@ -1,0 +1,46 @@
+# header links
+header:
+  # - title: "Features"
+  #   url: "/features/"
+  #   description: "List of features in the theme"
+  - title: "Home"
+    url: "/"
+    description: "Landing page"
+  - title: "Menu"
+    url: "james"
+    description: "James Sullivan at solutions.asia"
+  - title: "Shortcuts"
+    url: "/keyboard_shortcuts/"
+    description: "Useful Keyboard Shortcuts"
+  - title: "About"
+    url: "/about/"
+    description: "A little story about the theme"
+
+# footer links
+footer:
+  - owner: "solutions.asia"
+    url: "https://solutions.asia"
+    description: "Landing Page"
+    bio: ""
+    address: "Canada"
+  - social:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/jamessullivan"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/jamesbriansullivan/"
+    - label: "Mastodon"
+      icon: "fab fa-fw fa-mastodon"
+      url: "https://fosstodon.org/@sullija"
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/sullija722"
+
+  - feed:
+    - label: "Sitemap"
+      icon: "fas fa-sitemap"
+      url: "/sitemap.xml"
+    - label: "RSS"
+      icon: "fas fa-fw fa-rss-square"
+      url: "/feed.xml"

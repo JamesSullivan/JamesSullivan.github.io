@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=s.a code
+Comment=Open solutions.asia in VS Code
+GenericName=solutions.asia
+Exec=/usr/share/code/code --no-sandbox --unity-launch ~/dev/jekyll/JamesSullivan.github.io
+Icon=/home/sullija/dev/jekyll/JamesSullivan.github.io/assets/images/favicons/favicon-64x64.png
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=Development;IDE;
+MimeType=text/plain;inode/directory;
+Actions=new-empty-window;
+

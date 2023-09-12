@@ -1,0 +1,16 @@
+// Site custom variables for use in layouts.
+$enable-gradients: true;
+
+.landing_title {
+	position: relative; 
+	left: 20px; 
+ 	font-size: clamp(10px, calc(9vw + 1rem), 140px) !important;
+	font-weight: bold;
+	color:#222222; 
+	-webkit-text-stroke: 2px #f2f2f2;
+}
+
+.vertical300{
+	display: block;
+	height: 300px;
+}

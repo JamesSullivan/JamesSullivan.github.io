@@ -1,0 +1,192 @@
+---
+layout: post
+title: Japanese Language Tokenization
+date: '2016-10-19T21:59:00.000-07:00'
+author: Sully
+categories: programming
+tags:
+- programming
+modified_time: '2023-01-11T05:27:24.718-08:00'
+blogger_id: tag:blogger.com,1999:blog-7835395644559909128.post-4857109763607334158
+blogger_orig_url: http://blog.solutions.asia/2016/10/japanese-tokenization.html
+---
+<br>
+<div class="MsoNormal">
+   <b>
+      <span style="font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 12.0pt;">
+         <h2 id="what is tokenization">What is Tokenization?</h2>
+         <o:p></o:p>
+      </span>
+   </b>
+</div>
+<div style="background: white; margin-bottom: 6.0pt; margin-left: 0cm; margin-right: 0cm; margin-top: 6.0pt;">
+   <b><span style="color: #252525; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.0pt;">Tokenization </span></b><span style="color: #252525; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.0pt;">(lexical or morphological analysis)</span><span class="apple-converted-space"><span style="color: #252525; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.0pt;">&nbsp;</span></span>
+   <span style="color: #252525; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.0pt;">
+      is the process of breaking up a stream of text into words, phrases, names, or other meaningful elements called tokens. The list of tokens can then be used in indices for search, text mining, NLP, etc.
+      <o:p></o:p>
+   </span>
+</div>
+<div style="background: white; margin-bottom: 6.0pt; margin-left: 0cm; margin-right: 0cm; margin-top: 6.0pt;">
+   <span style="color: #252525; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.0pt;">In languages that use spaces, such as English, tokenization may seem easy. However, even with English there are many edge cases such as<span class="apple-converted-space">&nbsp;</span></span><span style="color: #252525; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.0pt;">hyphenated words, contractions, etc.</span>
+   <span style="color: #252525; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.0pt;">
+      , and even what is meant by a word. Should International Business Machines be tokenized as one token or three? For languages like Japanese and Chinese that do not use spaces for word breaks it can be even more challenging. Adding to the complexity is often the need for <a href="https://en.wikipedia.org/wiki/Stemming">stemming</a> to base forms of the words. How do you tokenize something like 
+      <o:p></o:p>
+   </span>
+</div>
+<div style="background: white; margin-bottom: 6.0pt; margin-left: 0cm; margin-right: 0cm; margin-top: 6.0pt;"><br /></div>
+<div style="background: white; margin-bottom: 6.0pt; margin-left: 0cm; margin-right: 0cm; margin-top: 6.0pt;">
+   <span lang="JA" style="color: #001100; font-family: &quot;ms gothic&quot;; font-size: 10pt;">機械学習を使うえでも、できあがったモデルのコンパクトさが重要になります。</span>
+   <span style="color: #3d3d3d; font-family: &quot;helvetica&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">
+      <o:p></o:p>
+   </span>
+</div>
+<div data-mce-style="background: white; margin: 6.0pt 0cm 6.0pt 0cm;" style="background: white; margin: 6pt 0cm; word-wrap: break-word;">
+   <span data-mce-style="font-size: 11.0pt; color: #252525;"><span style="color: #252525; font-family: &quot;helvetica&quot; , &quot;sans-serif&quot;; font-size: 11.0pt;">to</span><br /><span data-mce-style="font-size: 11.0pt; color: #252525;">&nbsp;</span><span lang="JA" style="color: #252525; font-family: &quot;ms gothic&quot;; font-size: 11.0pt;">機械</span><span style="color: #252525; font-family: &quot;helvetica&quot; , &quot;sans-serif&quot;; font-size: 11.0pt;"> / </span><span lang="JA" style="color: #252525; font-family: &quot;ms gothic&quot;; font-size: 11.0pt;">学習</span><span style="color: #252525; font-family: &quot;helvetica&quot; , &quot;sans-serif&quot;; font-size: 11.0pt;"> / </span><span lang="JA" style="color: #252525; font-family: &quot;ms gothic&quot;; font-size: 11.0pt;">を</span><span style="color: #252525; font-family: &quot;helvetica&quot; , &quot;sans-serif&quot;; font-size: 11.0pt;"> / </span><span lang="JA" style="color: #252525; font-family: &quot;ms gothic&quot;; font-size: 11.0pt;">使う</span><span style="color: #252525; font-family: &quot;helvetica&quot; , &quot;sans-serif&quot;; font-size: 11.0pt;"> / </span><span lang="JA" style="color: #252525; font-family: &quot;ms gothic&quot;; font-size: 11.0pt;">え</span><span style="color: #252525; font-family: &quot;helvetica&quot; , &quot;sans-serif&quot;; font-size: 11.0pt;"> / </span><span lang="JA" style="color: #252525; font-family: &quot;ms gothic&quot;; font-size: 11.0pt;">でも</span><span style="color: #252525; font-family: &quot;helvetica&quot; , &quot;sans-serif&quot;; font-size: 11.0pt;"> /&nbsp;</span></span><span data-mce-style="font-size: 10.0pt; color: #404040;"><span lang="JA" style="color: #404040; font-family: &quot;ms gothic&quot;; font-size: 10.0pt;">、</span><span style="color: #404040; font-family: &quot;helvetica&quot; , &quot;sans-serif&quot;; font-size: 10.0pt;"> /&nbsp;</span></span><span data-mce-style="font-size: 11.0pt; color: #252525;"><span lang="JA" style="color: #252525; font-family: &quot;ms gothic&quot;; font-size: 11.0pt;">できあがっ</span><span lang="JA" style="color: #252525; font-family: &quot;helvetica&quot; , &quot;sans-serif&quot;; font-size: 11.0pt;"> </span><span lang="JA" style="color: #252525; font-family: &quot;ms gothic&quot;; font-size: 11.0pt;">た</span><span style="color: #252525; font-family: &quot;helvetica&quot; , &quot;sans-serif&quot;; font-size: 11.0pt;"> / </span><span lang="JA" style="color: #252525; font-family: &quot;ms gothic&quot;; font-size: 11.0pt;">モデル</span><span style="color: #252525; font-family: &quot;helvetica&quot; , &quot;sans-serif&quot;; font-size: 11.0pt;"> / </span><span lang="JA" style="color: #252525; font-family: &quot;ms gothic&quot;; font-size: 11.0pt;">の</span><span style="color: #252525; font-family: &quot;helvetica&quot; , &quot;sans-serif&quot;; font-size: 11.0pt;"> / </span><span lang="JA" style="color: #252525; font-family: &quot;ms gothic&quot;; font-size: 11.0pt;">コンパクト</span><span style="color: #252525; font-family: &quot;helvetica&quot; , &quot;sans-serif&quot;; font-size: 11.0pt;"> / </span><span lang="JA" style="color: #252525; font-family: &quot;ms gothic&quot;; font-size: 11.0pt;">さ</span><span style="color: #252525; font-family: &quot;helvetica&quot; , &quot;sans-serif&quot;; font-size: 11.0pt;"> / </span><span lang="JA" style="color: #252525; font-family: &quot;ms gothic&quot;; font-size: 11.0pt;">が</span><span style="color: #252525; font-family: &quot;helvetica&quot; , &quot;sans-serif&quot;; font-size: 11.0pt;"> / </span><span lang="JA" style="color: #252525; font-family: &quot;ms gothic&quot;; font-size: 11.0pt;">重要</span><span style="color: #252525; font-family: &quot;helvetica&quot; , &quot;sans-serif&quot;; font-size: 11.0pt;"> / </span><span lang="JA" style="color: #252525; font-family: &quot;ms gothic&quot;; font-size: 11.0pt;">に</span><span style="color: #252525; font-family: &quot;helvetica&quot; , &quot;sans-serif&quot;; font-size: 11.0pt;"> / </span><span lang="JA" style="color: #252525; font-family: &quot;ms gothic&quot;; font-size: 11.0pt;">なり</span><span lang="JA" style="color: #252525; font-family: &quot;helvetica&quot; , &quot;sans-serif&quot;; font-size: 11.0pt;"> </span><span lang="JA" style="color: #252525; font-family: &quot;ms gothic&quot;; font-size: 11.0pt;">ます</span></span><span data-mce-style="font-size: 10.0pt; color: #001100; background: white;"><span lang="JA" style="color: #001100; font-family: &quot;ms gothic&quot;; font-size: 10pt;">。</span></span>
+   <span style="color: #3d3d3d; font-family: &quot;helvetica&quot; , &quot;sans-serif&quot;; font-size: 11.5pt;">
+      <o:p></o:p>
+   </span>
+</div>
+<div style="background: white; margin-bottom: 6.0pt; margin-left: 0cm; margin-right: 0cm; margin-top: 6.0pt;"><br /></div><br>
+<div style="background: white; margin-bottom: 6.0pt; margin-left: 0cm; margin-right: 0cm; margin-top: 6.0pt;">
+   <b>
+      <span style="color: #252525; font-family: &quot;arial&quot; , &quot;sans-serif&quot;;">
+         <h2 id="japanese language tokenization methods and open source implementations:">Japanese Language Tokenization Methods and Open Source Implementations:</h2>
+         <o:p></o:p>
+      </span>
+   </b>
+</div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0cm; margin-left: 0cm; margin-right: 24.0pt; margin-top: 0cm; mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; ">
+	<b><span style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;"><br>
+	<h3 id="dictionary based sequence prediction">Dictionary based sequence prediction</h3></span></b>
+   <span style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;;">
+      Based on provided or used supplemented dictionary of words, the programs find the best sequence of the words in the dictionary that matches the input. Scoring is usually done by statistical methods such as HMMs (ChaSen) or CRFs (MeCab) but can be done manually (Juman). The advantages of dictionary based methods are that they are very accurate for items in their dictionary and they can relatively easily be customized, which can be important for names of people and organizations. They usually include part-of-speech (POS) tagging as well. The disadvantages are they do not handle unknown words very well. 
+   </span>
+</div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0cm; margin-left: 0cm; margin-right: 24.0pt; margin-top: 0cm; mso-list: l0 level1 lfo1; tab-stops: list 36.0pt; text-indent: -18.0pt;">
+   <span style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;;">&nbsp;</span>
+</div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0cm; margin-left: 18.0pt; margin-right: 24.0pt; margin-top: 0cm;">
+   <span style="font-family: &quot;arial&quot; , &quot;sans-serif&quot;; mso-bidi-font-weight: bold;"><a href="https://www.google.co.jp/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;cad=rja&amp;uact=8&amp;ved=0ahUKEwjU2czilejPAhUNT48KHcvmCtsQFggcMAA&amp;url=http%3A%2F%2Fwww.atilika.org%2F&amp;usg=AFQjCNFso-8IerqO7WjTAAYCPDPZ8OgZUg&amp;sig2=LSQA9vt0C5T8wXB1YMBOrw&amp;bvm=bv.136499718,d.c2I">Kuromoji</a><span style="color: #222222;"> </span>Very easy to use <span style="color: #222222;">Java port of MeCab</span></span>
+   <span style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;;">
+      <o:p></o:p>
+   </span>
+</div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0cm; margin-left: 18.0pt; margin-right: 24.0pt; margin-top: 0cm;">
+   <span style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;;">
+      <a href="http://taku910.github.io/mecab/">MeCab</a><span class="apple-converted-space">&nbsp;</span>
+      <span class="qlinkcontainer">
+         &nbsp; C++ but can be used easily from other languages such as Java, Python, Ruby
+         <o:p></o:p>
+      </span>
+   </span>
+</div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0cm; margin-left: 18.0pt; margin-right: 24.0pt; margin-top: 0cm;">
+   <span style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;;">
+      <a href="http://chasen-legacy.sourceforge.jp/">ChaSen</a> &nbsp;C++
+      <span class="qlinkcontainer">
+         <o:p></o:p>
+      </span>
+   </span>
+</div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0cm; margin-left: 18.0pt; margin-right: 24.0pt; margin-top: 0cm;">
+   <span style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;;"><a href="http://nlp.ist.i.kyoto-u.ac.jp/index.php?cmd=read&amp;page=JUMAN&amp;alias%5B%5D=%E6%97%A5%E6%9C%AC%E8%AA%9E%E5%BD%A2%E6%85%8B%E7%B4%A0%E8%A7%A3%E6%9E%90%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0JUMAN">JUMAN</a>&nbsp; C++ but has Python bindings via </span>
+   <span style="font-family: &quot;arial&quot; , &quot;sans-serif&quot;;">
+      <a href="http://nlp.ist.i.kyoto-u.ac.jp/index.php?PyKNP">PyKNP</a>
+      <span style="color: #333333;">
+         <o:p></o:p>
+      </span>
+   </span>
+</div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0cm; margin-left: 18.0pt; margin-right: 24.0pt; margin-top: 0cm;">
+   <span style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;;">
+      <br />
+      <o:p></o:p>
+   </span>
+</div>
+<div class="MsoNormal" style="margin-left: 0cm; margin-right: 24.0pt;">
+   <b><span style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;">
+	<h3 id="machine learning word-boundary prediction methods">Machine learning word-boundary prediction methods</h3></span></b>
+   <span style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;;">
+      These programs can be smaller than the dictionary-based methods and often handle new or unknown words better, but can be more difficult to customize as it involves retraining the dataset. The basic idea is that for adjacent characters in the input string, the trained model will predict whether there is a word boundary between the two characters. 
+   </span>
+</div>
+<div class="MsoNormal" style="margin-right: 24.0pt;"><br /></div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0cm; margin-left: 18.0pt; margin-right: 24.0pt; margin-top: 0cm;">
+   <span style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;;">
+      TinySegmenter&nbsp; <a href="http://chasen.org/~taku/software/TinySegmenter/">Javascript</a> and <a href="https://github.com/SamuraiT/tinysegmenter">Python</a> versions available
+      <o:p></o:p>
+   </span>
+</div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0cm; margin-left: 18.0pt; margin-right: 24.0pt; margin-top: 0cm;">
+   <span style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;;">
+      <a href="http://www.phontron.com/kytea/">KyTea</a> &nbsp;&nbsp;C++ (includes POS tagging)
+      <o:p></o:p>
+   </span>
+</div>
+<div class="MsoNormal" style="margin-bottom: .0001pt; margin-bottom: 0cm; margin-left: 18.0pt; margin-right: 24.0pt; margin-top: 0cm;">
+   <span style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;;">
+      <a href="https://github.com/tkng/micter">Micter</a> &nbsp;&nbsp;C++
+      <o:p></o:p>
+   </span>
+</div>
+<div class="MsoListParagraph" style="margin-right: 24.0pt;"><br /></div>
+<div class="MsoNormal" style="margin-right: 24.0pt;">
+   <b><span style="color: #333333; font-family: &quot;arial&quot; , &quot;sans-serif&quot;;"><h3 id="n-gram">N-Gram</h3></span></b><span style="background: white; color: #393943; font-family: &quot;arial&quot; , &quot;sans-serif&quot;;">The N-gram method brute-force generates contiguous sequences of N (usually two or three) characters and generates scores by counting the frequency of each block. The advantage of this approach is that it is language agnostic and handles new or unexpected words better than other approaches. The draw backs are it is impossible to customize and the larger memory requirements and slower speed. The N-gram approach is not capable of POS tagging. N-Gram solutions are usually included with other tools (for example both Solr and Elastic Search include n-gram tokenizers) and not as standalone applications.</span>
+   <span style="background: white; color: #393943; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 10.5pt;">
+      <o:p></o:p>
+   </span>
+</div>
+<div class="MsoNormal" style="margin-right: 24.0pt;"><br /></div>
+<div class="MsoNormal" style="margin-right: 24.0pt;"><br /></div>
+<div class="MsoNormal" style="margin-right: 24.0pt;">
+   <b>
+      <span style="background: white; color: #393943; font-family: &quot;arial&quot; , &quot;sans-serif&quot;;">
+         <h2 id="commercial offerings">Commercial Offerings</h2>
+         <o:p></o:p>
+      </span>
+   </b>
+</div>
+<div class="MsoNormal" style="margin-right: 24.0pt;">
+   <span style="background: white; color: #393943; font-family: &quot;arial&quot; , &quot;sans-serif&quot;;">
+      <a href="https://www.rosette.com/function/tokenization/">Rosette Text Analytics</a>SDK from BasisTech (multilingual)
+      <o:p></o:p>
+   </span>
+</div>
+<div class="MsoNormal" style="margin-right: 24.0pt;"><br /></div>
+<div class="MsoNormal" style="margin-right: 24.0pt;"><br /></div>
+<div style="background: white; margin-bottom: 6.0pt; margin-left: 0cm; margin-right: 0cm; margin-top: 6.0pt;">
+   <b><span style="color: #252525; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.0pt;"><h2 id="online services">Online Services</h2></span></b>
+   <span style="color: #252525; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.0pt;">
+      (free and commercial)
+      <b>
+         <o:p></o:p>
+      </b>
+   </span>
+</div>
+<div style="background: white; margin-bottom: 6.0pt; margin-left: 0cm; margin-right: 0cm; margin-top: 6.0pt;">
+   <span style="color: #252525; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.0pt;">
+      <a href="http://atilika.org/kuromoji/">http://atilika.org/kuromoji/</a>&nbsp; (meant for kicking the tires on the Kuromoji Open Source library not for heavy use)
+      <o:p></o:p>
+   </span>
+</div>
+<div style="background: white; margin-bottom: 6.0pt; margin-left: 0cm; margin-right: 0cm; margin-top: 6.0pt;">
+   <span style="color: #252525; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.0pt;">
+      <a href="http://developer.yahoo.co.jp/webapi/jlp/ma/v1/parse.html">http://developer.yahoo.co.jp/webapi/jlp/ma/v1/parse.html</a>
+      <o:p></o:p>
+   </span>
+</div>
+<div style="background: white; margin-bottom: 6.0pt; margin-left: 0cm; margin-right: 0cm; margin-top: 6.0pt;">
+   <span style="color: #252525; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.0pt;"><a href="https://cloud.google.com/natural-language/">https://cloud.google.com/natural-language/</a></span>
+   <span style="font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.0pt;">
+      &nbsp;(multilingual)
+      <o:p></o:p>
+   </span>
+</div>
+<div style="background: white; margin-bottom: 6.0pt; margin-left: 0cm; margin-right: 0cm; margin-top: 6.0pt;">
+   <span style="font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-size: 11.0pt;">
+      <a href="https://developer.rosette.com/">Rosette Text Analytics API</a>(multilingual)
+      <o:p></o:p>
+   </span>
+</div>
+<br />
+<h3 style="background: white; margin-top: 0cm;"><span style="color: #222222; font-family: &quot;arial&quot; , &quot;sans-serif&quot;; font-weight: normal;">&nbsp;</span></h3>

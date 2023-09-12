@@ -1,0 +1,27 @@
+# blog authors
+authors:
+  - name: "James Sullivan"
+    headline: "Data & Analytics"
+    avatar: "james"
+    follow:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/jamessullivan"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/jamesbriansullivan/"
+    - label: "Polywork"
+      icon: "fab fa-fw fa-polywork"
+      url: "https://poly.me/james_sullivan"
+
+# blog post share links
+share:
+  - label: "LinkedIn"
+    icon: "fab fa-fw fa-linkedin"
+    url: "https://www.linkedin.com/in/jamesbriansullivan/"
+  - label: "Mastodon"
+    icon: "fab fa-fw fa-mastodon"
+    url: "https://fosstodon.org/@sullija"
+  - label: "Twitter"
+    icon: "fab fa-fw fa-twitter-square"
+    url: "https://twitter.com/sullija722"
