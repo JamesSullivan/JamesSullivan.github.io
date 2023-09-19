@@ -8,7 +8,7 @@ A simple [bootstrap](https://getbootstrap.com/) based jekyll theme for my former
 <img src="./assets/images/solutionsasia_jekyll.png" alt="screen shot"/>
 
 The site uses
-<img src="https://raw.githubusercontent.com/JamesSullivan/JamesSullivan.github.io/gh-pages/assets/images/lwt-logo-wolf-v2.svg" alt="isolated" width="50"/>
+<img src="./assets/images/lwt-logo-wolf-v2.svg" alt="isolated" width="50"/>
 - [LWT](https://github.com/manid2/lone-wolf-theme)
 - [github-pages compatible gems](https://pages.github.com/versions/)
 - [bootswatch wrappers](https://bootswatch.com/)
